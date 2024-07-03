@@ -1,1 +1,3 @@
-["brilisp", ["define", [["fn", "int"], ["n", "int"]], ["ret", "n"]]]
+(brilisp
+  (define ((fn int) (n int) (m int)) (ret (* n m)))
+  (define ((g int) (m int)) (ret m)))
