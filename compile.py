@@ -29,7 +29,7 @@ def gen_body(body):
         elif operator == '/':
             out_set.append(['div', op1, op2])
         else:
-            raise Exception("Error - Invalid operation type")
+            raise Exception("Invalid operator enteredd !!!!")
         out.append(out_set)
         out.append(['ret', 'tmp'])
         return out
