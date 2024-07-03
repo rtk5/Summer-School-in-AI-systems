@@ -1,0 +1,1 @@
+cat first.kal.sexp | guile llama.lisp/src/backend/utils/sexp-json.scm | python compile.py > out.json
