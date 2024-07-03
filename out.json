@@ -1,3 +1,4 @@
 (brilisp
-  (define ((fn int) (n int) (m int)) (ret (* n m)))
-  (define ((g int) (m int)) (ret m)))
+  (define ((fn int) (n int) (m int))
+    ((set tmp int (mul n m)) (ret tmp)))
+  (define ((g int) (m int)) ((ret m))))
