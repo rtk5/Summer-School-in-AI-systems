@@ -5,15 +5,15 @@ inp = json.loads(sys.stdin.read())
 
 def gen_head(header):
     fn_name = header[0]
-    args = header[1:]  # Extract arguments from the header
-    out_args = [[a, "int"] for a in args]  # Assume all arguments are of type "int"
+    args = header[1:] 
+    out_args = [[a, "int"] for a in args]  
     return [fn_name, "int"], out_args
 
 def gen_body(body):
     assert body[0] == 'ret'
     expr = body[1]
     if not isinstance(expr, list):
-        return [body]  # Handle simple return values
+        return [body]  
     else:
         out = []
         operator = expr[0]
@@ -58,5 +58,5 @@ try:
     print(json.dumps(output))
 except Exception as e:
     print(f"Error: {str(e)}")
-    
+
 #["brilisp", ["define", [["fn", "n"], ["n", "int"]], ["ret", "n"]]]
