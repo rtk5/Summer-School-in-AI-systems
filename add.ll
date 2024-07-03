@@ -6,13 +6,13 @@ declare i32 @"print"(i32 %".1")
 
 define i32 @"main"()
 {
-alloca-zogexlqp:
+alloca-aqkvuwdr:
   %"v0" = alloca i32
   %"v1" = alloca i32
   %"res" = alloca i32
   %"tmp" = alloca i32
-  br label %"entry-aonoybvd"
-entry-aonoybvd:
+  br label %"entry-ijgfgbju"
+entry-ijgfgbju:
   store i32 9, i32* %"v0"
   store i32 -20, i32* %"v1"
   %".4" = load i32, i32* %"v0"
