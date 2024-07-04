@@ -1,6 +1,7 @@
 import random
-import timeit
+import time
 import matplotlib.pyplot as plt
+import numpy as np
 
 def create(m, n):
     mat = []
@@ -38,10 +39,11 @@ def benchmark(start, end, step):
         a = create(i+1, i+1)
         b = create(i+1,i+1)
 
-        start_time = timeit.default_timer()
+        start_time = time.time()
         c = mat_mul(a, b)
-
-        end_time = timeit.default_timer()
+        # c=np.matmul(a,b)
+        
+        end_time = time.time()
 
         time_taken = end_time - start_time
         times.append(time_taken)
