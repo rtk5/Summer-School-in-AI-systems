@@ -67,7 +67,6 @@ plt.grid(True)
 plt.tight_layout()
 plt.show()
 
-
 plt.figure(figsize=(10, 6))
 plt.plot(dimensions, flops, marker='o', linestyle='-', color='b', label='mat_mul')
 plt.title('Flops vs Matrix Dimensions')
