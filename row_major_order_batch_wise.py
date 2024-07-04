@@ -8,28 +8,31 @@ def create(m, n):
             mat.append(random.randint(1,5))
     return mat
 
-def mat_mul(a,b,m,n,p):
+def mat_mul(a,b,m,n,p,step):
     c = [0 for _ in range(m*p)]
-    for i in range(m):
-        for j in range(p):
-            for k in range(n):
-                c[i * p + j] += a[i * n + k] * b[k * p + j]
+    for batch in range(0,m,step):
+        for i in range(batch, min(batch + step, m)):
+            for j in range(p):
+                for k in range(n):
+                    c[i * p + j] += a[i * n + k] * b[k * p + j]
+        print(c)
     
-    return c
-
-m = 2
+m = 4
 n = 3
-p = 2
+p = 4
 
 a = create(m, n)
 b = create(n, p)
-c = mat_mul(a, b, m, n, p)
+c = mat_mul(a, b, m, n, p,2)
+
+print("From numpy")
+# print(c)
 
 import numpy as np
 a1 = np.array(a).reshape(m, n)
 b1 = np.array(b).reshape(n, p)
 c1 = np.matmul(a1, b1).flatten()
-print(np.allclose(c1, c))
+print(c1)
 
 
 
