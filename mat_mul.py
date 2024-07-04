@@ -18,33 +18,45 @@ def mat_mul(a, b):
     col2 = len(b[0])
     
     if col1 != row2:
-        raise ValueError("WRONG INPUT!!!!!!!!!!")
+        raise ValueError("Matrices cannot be multiplied.")
+    
     c = [[0 for _ in range(col2)] for _ in range(row1)]
+    
     for i in range(row1):
         for j in range(col2):
             for k in range(col1):
                 c[i][j] += a[i][k] * b[k][j]
+    
     return c
 
-def benchmark(n):
+def benchmark(start, end, step):
     times = []
     dimensions = []
-    for i in range(n):
-        a = create(i + 1, i + 1)
-        b = create(i + 1, i + 1)
+    flops = []
+    
+    for i in range(start, end, step):
+        a = create(i+1, i+1)
+        b = create(i+1,i+1)
 
         start_time = timeit.default_timer()
         c = mat_mul(a, b)
+
         end_time = timeit.default_timer()
 
-        elapsed_time = end_time - start_time
-        times.append(elapsed_time)
-        dimensions.append(i + 1)
+        time_taken = end_time - start_time
+        times.append(time_taken)
+        dimensions.append(i)
+        
+        total=end_time - start_time
+        flop = 2 * i**3 / total 
+        flops.append(flop)
 
-    return dimensions, times
+    return dimensions, times, flops
 
-n = 10  
-dimensions, times = benchmark(n)
+start = 0   
+end = 200   
+step = 50   
+dimensions, times, flops = benchmark(start, end+1, step)
 
 plt.figure(figsize=(10, 6))
 plt.plot(dimensions, times, marker='o', linestyle='-', color='b', label='mat_mul')
@@ -52,4 +64,15 @@ plt.title('Time vs Matrix Dimensions')
 plt.xlabel('Matrix Dimension (size)')
 plt.ylabel('Time (seconds)')
 plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+
+plt.figure(figsize=(10, 6))
+plt.plot(dimensions, flops, marker='o', linestyle='-', color='b', label='mat_mul')
+plt.title('Flops vs Matrix Dimensions')
+plt.xlabel('Matrix Dimension (size)')
+plt.ylabel('Flops')
+plt.grid(True)
+plt.tight_layout()
 plt.show()
