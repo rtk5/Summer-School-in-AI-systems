@@ -1,0 +1,1 @@
+cat training_sample.json | python program.py
